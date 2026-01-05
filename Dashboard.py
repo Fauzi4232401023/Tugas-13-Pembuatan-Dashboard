@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
@@ -125,7 +125,7 @@ with col2:
     total_revenue = format_currency(daily_orders_df.revenue.sum(), "AUD", locale='es_CO') 
     st.metric("Total Revenue", value=total_revenue)
  
-fig, ax = plt.subplots(figsize=(16, 8))
+fig, ax = px.subplots(figsize=(16, 8))
 ax.plot(
     daily_orders_df["order_date"],
     daily_orders_df["order_count"],
@@ -140,7 +140,7 @@ st.pyplot(fig)
 
 st.subheader("Best & Worst Performing Product")
  
-fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(35, 15))
+fig, ax = px.subplots(nrows=1, ncols=2, figsize=(35, 15))
  
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
  
@@ -168,7 +168,7 @@ st.subheader("Customer Demographics")
 col1, col2 = st.columns(2)
  
 with col1:
-    fig, ax = plt.subplots(figsize=(20, 10))
+    fig, ax = px.subplots(figsize=(20, 10))
  
     sns.barplot(
         y="customer_count", 
@@ -185,7 +185,7 @@ with col1:
     st.pyplot(fig)
  
 with col2:
-    fig, ax = plt.subplots(figsize=(20, 10))
+    fig, ax = px.subplots(figsize=(20, 10))
     
     colors = ["#D3D3D3", "#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
  
@@ -203,7 +203,7 @@ with col2:
     ax.tick_params(axis='y', labelsize=30)
     st.pyplot(fig)
  
-fig, ax = plt.subplots(figsize=(20, 10))
+fig, ax = px.subplots(figsize=(20, 10))
 colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 sns.barplot(
     x="customer_count", 
@@ -233,7 +233,7 @@ with col3:
     avg_frequency = format_currency(rfm_df.monetary.mean(), "AUD", locale='es_CO') 
     st.metric("Average Monetary", value=avg_frequency)
  
-fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(35, 15))
+fig, ax = px.subplots(nrows=1, ncols=3, figsize=(35, 15))
 colors = ["#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9", "#90CAF9"]
  
 sns.barplot(y="recency", x="customer_id", data=rfm_df.sort_values(by="recency", ascending=True).head(5), palette=colors, ax=ax[0])
